@@ -1,9 +1,5 @@
 body {
-  background: url(../img/bg.jpg) no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  background-color: #333333;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -23,6 +19,15 @@ hr {
   max-width: 400px;
 }
 
+a, a:hover {
+  color: #515151;
+  text-decoration: none
+}
+
+.site-title, .site-title:hover {
+  color: #ffffff;
+}
+
 .brand,
 .address-bar {
   display: none;
@@ -33,6 +38,7 @@ hr {
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: 900;
+  font-size: 16px;
 }
 
 .navbar-nav {
