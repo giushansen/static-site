@@ -5,6 +5,10 @@ date:   2014-06-06 12:10:25
 categories: jekyll update
 ---
 
+Eiffel Tower is a symbol of France but not for a creperie.
+
+Funny fact: One of the oldest kitchen "hearth" in the world 450000 has been found in brittany, Finistere.
+
 You'll find this post in your `_posts` directory - edit this post and re-build (or run with the `-w` switch) to see your changes!
 To add new posts, simply add a file in the `_posts` directory that follows the convention: YYYY-MM-DD-name-of-post.ext.
 
