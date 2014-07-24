@@ -97,6 +97,7 @@ a, a:hover {
 }
 
 footer {
+  padding: 20px 0;
   background: #ffffff;
 }
 
@@ -111,7 +112,7 @@ footer {
 
 @media screen and (max-width: 768px) {
   .navbar-brand {
-    font-size: 14px;
+    font-size: 20px;
     letter-spacing: 1px;
   }
 
@@ -136,17 +137,18 @@ footer {
   }
 
   .navbar {
-    margin-bottom: 50px
+    margin-bottom: 20px
   }
 
   .brand {
     display: inherit;
     text-align: center;
-    background-color: #ffffff;
+    background-color: #000000;
   }
 
   .brand img {
-    height: 250px;
+    height: 240px;
+    padding: 10px 0px 15px 0px;
   }
 
   .top-divider {
@@ -181,7 +183,7 @@ footer {
   }
 
   .nav>li>a {
-    padding: 25px;
+    padding: 5px 25px 5px 25px;
   }
 
   .navbar-nav>li>a {
@@ -193,7 +195,7 @@ footer {
     margin: 0 auto;
     display: table;
     table-layout: fixed;
-    font-size: 1.25em;
+    font-size: 1.20em;
   }
 
 }
@@ -201,7 +203,7 @@ footer {
 @media screen and (min-width: 992px) {
   footer p {
     margin: 0;
-    padding: 50px 0;
+    padding: 5px 0;
   }
 }
 
