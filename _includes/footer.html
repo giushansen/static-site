@@ -33,31 +33,45 @@ $('.carousel').carousel({
 $("#bookForm").submit( function(event) {
   // Stop form from submitting normally
   event.preventDefault();
-
+  error = false;
   // Get some values from elements on the page:
-  var $form = $( this ),
-    term = $form.find( "input[name='s']" ).val(),
-    url = $form.attr( "action" );
+  guest_name = $("#InputName").val();
+  guest_email = $("#InputEmail").val();
+  guest_seats = $("#SelectNumber").val();
+  guest_time = $("#SelectTime").val();
+  guest_comments = $("#SelectNotes").val();
+
+  if (guest_name == "") {
+    error = true;
+    $("#InputName").parent().addClass('has-error');
+    $("#InputName").after("<span class=\"help-inline\" style=\"color:red;\"><strong>Please give your full name.</strong></span>");
+  }else{
+    $("#InputName").parent().removeClass('has-error');
+    $("#InputName").nextAll().remove();
+  }
+
+  if ( /(.+)@(.+){2,}\.(.+){2,}/.test(guest_email) ) {
+    $("#InputEmail").parent().removeClass('has-error');
+    $("#InputEmail").nextAll().remove();
+  }else{
+    error = true;
+    $("#InputEmail").parent().addClass('has-error');
+    $("#InputEmail").after("<span class=\"help-inline\" style=\"color:red;\"><strong>Please make sure your email address is valid.</strong></span>");
+  }
+
+  if (error == true) { return false; }
 
   // Send the data using post
-  var posting = $.post( "http://breizh.herokuapp.com/", { s: term }, function() {
-    alert( "success" );
-    })
-    .done(function() {
-      alert( "second success" );
+  var posting = $.post( "http://0.0.0.0:5000/", { name: guest_name, email: guest_email, seats: guest_seats, time: guest_time, comments: guest_comments }, function() {
+      $("#reservation").fadeOut('fast', function(){
+        $("#successEnquire").fadeIn('fast')
+      });
     })
     .fail(function() {
-      alert( "error" );
-    })
-    .always(function() {
-      alert( "finished" );
-  });
-
-  // Put the results in a div
-  posting.done(function( data ) {
-    var content = $( data ).find( "#content" );
-    $( "#result" ).empty().append( content );
-  });
+      $("#reservation").fadeOut('fast', function(){
+        $("#failEnquire").fadeIn('fast')
+      });
+    });
 });
 
 </script>
