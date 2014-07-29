@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Welcome to Jekyll!"
+title:  "Welcome to Paris! I mean Brittany."
 date:   2014-06-06 12:10:25
 permalink: welcome-to-the-crepe-of-paris
 categories: original crepe
@@ -15,6 +15,7 @@ To add new posts, simply add a file in the `_posts` directory that follows the c
 
 Jekyll also offers powerful support for code snippets:
 
+![My helpful screenshot]({{ site.url }}/img/fourret-crest.jpg)
 
 Check out the [Jekyll docs][jekyll] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll's GitHub repo][jekyll-gh].
 
