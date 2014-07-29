@@ -2,7 +2,7 @@
     <div class="container">
       <div class="row">
             <div class="col-md-4 text-center">
-                <p><a>Be in our circle via the newsletter</a></p>
+              <p><u><a href="http://eepurl.com/ZVWWb">Be in our circle via the newsletter</a></u></p>
             </div>
 
             <div class="col-md-4 text-center copyright">
@@ -61,17 +61,21 @@ $("#bookForm").submit( function(event) {
 
   if (error == true) { return false; }
 
+  $('#spinner').fadeIn('fast');
   // Send the data using post
-  var posting = $.post( "http://0.0.0.0:5000/", { name: guest_name, email: guest_email, seats: guest_seats, time: guest_time, comments: guest_comments }, function() {
+  $.post( "http://breizh.herokuapp.com/", { name: guest_name, email: guest_email, seats: guest_seats, time: guest_time, comments: guest_comments }, null)
+    .done(function() {
       $("#reservation").fadeOut('fast', function(){
-        $("#successEnquire").fadeIn('fast')
+        $("#successEnquire").fadeIn('fast');
       });
     })
     .fail(function() {
       $("#reservation").fadeOut('fast', function(){
-        $("#failEnquire").fadeIn('fast')
+        $("#failEnquire").fadeIn('fast');
       });
+    })
+    .always(function() {
+      $('#spinner').stop().fadeOut('fast');
     });
 });
-
 </script>
