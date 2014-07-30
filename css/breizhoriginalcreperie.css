@@ -46,6 +46,10 @@ a, a:hover {
   display: none;
 }
 
+.container >.navbar-header {
+  margin: 5px 5px;
+}
+
 .navbar-brand {
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -145,6 +149,10 @@ div#spinner > img
 
   .navbar {
     margin-bottom: 0px
+  }
+
+  .box {
+    padding: 5px 5px;
   }
 
   .carousel {
