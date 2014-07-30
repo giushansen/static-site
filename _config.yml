@@ -3,7 +3,7 @@ title: Breizh Original Crêperie
 email: enquire@breizhoriginal.com.au
 description: "Best Crêpes and Galettes in Perth, Western Australia. Authentic French food Crêperie."
 baseurl: ""
-url: 0.0.0.0:4000 #"http://www.breizhoriginal.com.au"
+url: http://www.breizhoriginal.com.au #http://0.0.0.0:4000
 
 # Build settings
 markdown: kramdown
