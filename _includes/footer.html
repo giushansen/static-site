@@ -71,8 +71,6 @@
 
     if (error == true) { return false; }
 
-    _gaq.push(['_trackEvent', 'Booking Button', 'Click', 'Want a booking']);
-
     $('#spinner').fadeIn('fast');
     // Send the data using post
     $.post( "http://breizh.herokuapp.com/", { name: guest_name, email: guest_email, seats: guest_seats, time: guest_time, comments: guest_comments }, null)
