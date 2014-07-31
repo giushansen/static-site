@@ -24,67 +24,72 @@
 <!-- JavaScript -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="{{ site.baseurl }}/js/bootstrap.min.js"></script>
-<script>
-// Activates the Carousel
-$('.carousel').carousel({
+<script src="{{site.url}}/js/jquery.countdown.min.js"></script>
+
+<script type="text/javascript">
+  $('.carousel').carousel({
     interval: 5000
-});
+  });
 
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  $('#timer').countdown('2014/08/07', function(event) {
+    $(this).html(event.strftime('%d Days %H:%M:%S'));
+    //$(this).html(event.strftime('%w weeks %d days %H:%M:%S'));
+  });
 
-$("#bookForm").submit( function(event) {
-  // Stop form from submitting normally
-  event.preventDefault();
-  error = false;
-  // Get some values from elements on the page:
-  guest_name = $("#InputName").val();
-  guest_email = $("#InputEmail").val();
-  guest_seats = $("#SelectNumber").val();
-  guest_time = $("#SelectTime").val();
-  guest_comments = $("#SelectNotes").val();
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  if (guest_name == "") {
-    error = true;
-    $("#InputName").parent().addClass('has-error');
-    $("#InputName").after("<span class=\"help-inline\" style=\"color:red;\"><strong>Please give your full name.</strong></span>");
-  }else{
-    $("#InputName").parent().removeClass('has-error');
-    $("#InputName").nextAll().remove();
-  }
+  $("#bookForm").submit( function(event) {
+    event.preventDefault();
 
-  if ( /(.+)@(.+){2,}\.(.+){2,}/.test(guest_email) ) {
-    $("#InputEmail").parent().removeClass('has-error');
-    $("#InputEmail").nextAll().remove();
-  }else{
-    error = true;
-    $("#InputEmail").parent().addClass('has-error');
-    $("#InputEmail").after("<span class=\"help-inline\" style=\"color:red;\"><strong>Please make sure your email address is valid.</strong></span>");
-  }
+    error = false;
+    guest_name = $("#InputName").val();
+    guest_email = $("#InputEmail").val();
+    guest_seats = $("#SelectNumber").val();
+    guest_time = $("#SelectTime").val();
+    guest_comments = $("#SelectNotes").val();
 
-  if (error == true) { return false; }
+    if (guest_name == "") {
+      error = true;
+      $("#InputName").parent().addClass('has-error');
+      $("#InputName").after("<span class=\"help-inline\" style=\"color:red;\"><strong>Please give your full name.</strong></span>");
+    }else{
+      $("#InputName").parent().removeClass('has-error');
+      $("#InputName").nextAll().remove();
+    }
 
-  ga('send', 'event', 'button', 'click', 'booking_request');
+    if ( /(.+)@(.+){2,}\.(.+){2,}/.test(guest_email) ) {
+      $("#InputEmail").parent().removeClass('has-error');
+      $("#InputEmail").nextAll().remove();
+    }else{
+      error = true;
+      $("#InputEmail").parent().addClass('has-error');
+      $("#InputEmail").after("<span class=\"help-inline\" style=\"color:red;\"><strong>Please make sure your email address is valid.</strong></span>");
+    }
 
-  $('#spinner').fadeIn('fast');
-  // Send the data using post
-  $.post( "http://breizh.herokuapp.com/", { name: guest_name, email: guest_email, seats: guest_seats, time: guest_time, comments: guest_comments }, null)
-    .done(function() {
-      $("#reservation").fadeOut('fast', function(){
-        $("#successEnquire").fadeIn('fast');
+    if (error == true) { return false; }
+
+    _gaq.push(['_trackEvent', 'Booking Button', 'Click', 'Want a booking']);
+
+    $('#spinner').fadeIn('fast');
+    // Send the data using post
+    $.post( "http://breizh.herokuapp.com/", { name: guest_name, email: guest_email, seats: guest_seats, time: guest_time, comments: guest_comments }, null)
+      .done(function() {
+        $("#reservation").fadeOut('fast', function(){
+          $("#successEnquire").fadeIn('fast');
+        });
+      })
+      .fail(function() {
+        $("#reservation").fadeOut('fast', function(){
+          $("#failEnquire").fadeIn('fast');
+        });
+      })
+      .always(function() {
+        $('#spinner').stop().fadeOut('fast');
       });
-    })
-    .fail(function() {
-      $("#reservation").fadeOut('fast', function(){
-        $("#failEnquire").fadeIn('fast');
-      });
-    })
-    .always(function() {
-      $('#spinner').stop().fadeOut('fast');
-    });
-});
+  });
 
 ga('create', 'UA-53343487-1', 'auto');
 ga('send', 'pageview');
