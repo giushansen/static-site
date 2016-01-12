@@ -1,9 +1,16 @@
+exclude: ['Gemfile.lock', 'Gemfile', '.DS_Store', '.git', '.gitignore']
+
+excerpt_separator: "<!-- more -->"
+include: ['_pages', '_posts']
+relative_permalinks: false
+
+baseurl: ""
+url: http://breizhoriginal.com.au #http://breizhoriginal.com.au #http://0.0.0.0:4000
+
 # Site settings
 title: Breizh Original Crêperie
 email: enquire@breizhoriginal.com.au
 description: "Best Crêpes and Galettes in Perth, Western Australia. Authentic French food Crêperie."
-baseurl: ""
-url: http://breizhoriginal.com.au #http://breizhoriginal.com.au #http://0.0.0.0:4000
 
 # Build settings
 markdown: kramdown
